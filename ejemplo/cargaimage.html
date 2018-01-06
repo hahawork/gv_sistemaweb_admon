@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type='text/javascript' src='loadimg.js'></script>
+<script>
+$(function(){
+        $('img').imgPreload()
+    })
+</script>
+
+<style type="text/css">
+	.images ul li img {
+		width: 400px;
+		height: 266px;
+	}
+	.images ul li {
+		display: inline-block;
+	}
+</style>
+</head>
+<body>
+<div>
+	<div class="images">
+		<ul>
+			<li>
+				<img class="main-img" src="http://smallenvelop.com/demo/image-loading/images/1.jpg">
+			</li>
+			
+			<li>
+				<img class="main-img" src="http://smallenvelop.com/demo/image-loading/images/2.jpg">
+			</li>
+			
+			<li>
+				<img class="main-img" src="http://smallenvelop.com/demo/image-loading/images/3.jpg">
+			</li>
+			
+			<li>
+				<img class="main-img" src="http://smallenvelop.com/demo/image-loading/images/4.jpg">
+			</li>
+			
+			<li>
+				<img class="main-img" src="http://smallenvelop.com/demo/image-loading/images/5.jpg">
+			</li>
+			
+			<li>
+				<img class="main-img" src="http://smallenvelop.com/demo/image-loading/images/6.jpg">
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+</body>
+</html>

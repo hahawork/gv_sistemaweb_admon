@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content
+            <button onclick="GenerarPowerPointFile()">probar</button>
+            <button onclick="console.log(JSON.parse(localStorage.getItem('ElementosPresentacionPPTX')))">ver</button>
+        </div>
+
+        <script type="text/javascript" src="../plugins/PptxGenJS/libs/jquery.min.js"></script>
+        <script type="text/javascript" src="../plugins/PptxGenJS/libs/jszip.min.js"></script>
+        <script type="text/javascript" src="../plugins/PptxGenJS/dist/pptxgen.js"></script>
+        <script type="text/javascript" src="../plugins/PptxGenJS/dist/pptxgen.bundle.js"></script>
+        <script>
+                function GenerarPowerPointFile() {
+
+                    var pathImage = "../../ws/";
+                    var ElementosPresentacionPPTX = JSON.parse(localStorage.getItem('ElementosPresentacionPPTX'));
+
+                    var pptx = new PptxGenJS();
+                    pptx.setAuthor('GV Informatica.');
+                    pptx.setCompany('GrupoValor Nic.');
+                    pptx.setRevision('1');
+                    pptx.setSubject('Reporte Solicitado.');
+                    pptx.setTitle('Presentacion.');
+
+                    for (var i = 0; i < ElementosPresentacionPPTX.length; i += 2) {
+                        var slide = pptx.addNewSlide();
+                        slide.back = 'F1F1F1';
+                        slide.color = '696969';
+                        //slide.slideNumber({x: 1.0, y: '90%'});
+                        // Slide Numbers can be styled:
+                        slide.slideNumber({x: 0.1, y: '90%', fontFace: 'Courier', fontSize: 12, color: 'CF0101'});
+                        slide
+                                .addImage({path: pathImage + ElementosPresentacionPPTX[i], x: 0.7, y: 1, w: 4, h: 4})
+                                .addImage({path: pathImage + ElementosPresentacionPPTX[i + 1], x: 5.1, y: 1, w: 4, h: 4});
+                        slide.addText('Hello World!', {x: 0.7, y: 5, font_size: 8, color: '363636'});
+                        slide.addText('Hello World!', {x: 5.1, y: 5, font_size: 8, color: '363636'});
+                    }
+
+                    /* var slide = pptx.addNewSlide();
+                     slide.addText('Demo-03: Table', {x: 0.5, y: 0.25, font_size: 18, font_face: 'Arial', color: '0088CC'});
+                     // TABLE 1: Single-row table
+                     // --------
+                     var rows = ['Cell 1', 'Cell 2', 'Cell 3'];
+                     var tabOpts = {x: 0.5, y: 1.0, w: 9.0, fill: 'F7F7F7', font_size: 14, color: '363636'};
+                     slide.addTable(rows, tabOpts);
+                     
+                     // TABLE 2: Multi-row table (each rows array element is an array of cells)
+                     // --------
+                     var rows = [
+                     ['A1', 'B1', 'C1'],
+                     ['A2', 'B2', 'C2']
+                     ];
+                     var tabOpts = {x: 0.5, y: 2.0, w: 9.0, fill: 'F7F7F7', font_size: 18, color: '6f9fc9'};
+                     slide.addTable(rows, tabOpts);
+                     
+                     // TABLE 3: Formatting at a cell level - use this to selectively override table's cell options
+                     // --------
+                     var rows = [
+                     [
+                     {text: 'Top Lft', options: {valign: 't', align: 'l', font_face: 'Arial'}},
+                     {text: 'Top Ctr', options: {valign: 't', align: 'c', font_face: 'Verdana'}},
+                     {text: 'Top Rgt', options: {valign: 't', align: 'r', font_face: 'Courier'}}
+                     ],
+                     ];
+                     var tabOpts = {x: 0.5, y: 4.5, w: 9.0, rowH: 0.6, fill: 'F7F7F7', font_size: 18, color: '6f9fc9', valign: 'm'};
+                     slide.addTable(rows, tabOpts);
+                     
+                     // Multiline Text / Line Breaks - use either "\r" or "\n"
+                     slide.addTable(['Line 1\nLine 2\nLine 3'], {x: 2, y: 3, w: 4});
+                     
+                     
+                     
+                     pptx.setLayout('LAYOUT_WIDE');
+                     
+                     pptx.defineSlideMaster({
+                     title: 'MASTER_SLIDE',
+                     bkgd: 'FFFFFF',
+                     objects: [
+                     {'line': {x: 3.5, y: 1.00, w: 6.00, line: '0088CC', line_size: 5}},
+                     {'rect': {x: 0.0, y: 5.30, w: '100%', h: 0.75, fill: 'F1F1F1'}},
+                     {'text': {text: 'Status Report', options: {x: 3.0, y: 5.30, w: 5.5, h: 0.75}}},
+                     {'image': {x: 11.3, y: 6.40, w: 1.67, h: 0.75, path: '1.png'}}
+                     ],
+                     slideNumber: {x: 0.3, y: '90%'}
+                     });
+                     
+                     var slide = pptx.addNewSlide('MASTER_SLIDE');
+                     slide.addText('How To Create PowerPoint Presentations with JavaScript', {x: 0.5, y: 0.7, font_size: 18});
+                     */
+                    pptx.save('Presentation');
+                }
+        </script>
+    </body>
+</html>
